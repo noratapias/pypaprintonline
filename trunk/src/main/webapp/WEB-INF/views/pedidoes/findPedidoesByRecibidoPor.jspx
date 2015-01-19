@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:find finderName="ByRecibidoPor" id="ff_com_pypaprint_pedidos_domain_Pedido" path="/pedidoes" z="7+E5Cq79d4WZKbZAxzSx01C8e2E=">
+        <field:select disableFormBinding="true" field="recibidoPor" id="f_com_pypaprint_pedidos_domain_Pedido_recibidoPor" itemValue="id" items="${usuarios}" path="/security/users" required="true" z="T1AjnTs4HLYyb8xO9TbqKtHPflI="/>
+    </form:find>
+</div>

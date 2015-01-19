@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_pypaprint_pedidos_domain_Pedido" items="${pedidoes}" z="YFWefRMLdydwHIN0ASdzOkj+uSM=">
+        <table:table data="${pedidoes}" id="l_com_pypaprint_pedidos_domain_Pedido" path="/pedidoes" z="6DBGnsLHkLg19/MPOoDXgkA9Mag=">
+            <table:column sort="true" id="c_com_pypaprint_pedidos_domain_Pedido_cliente" maxLength="20" property="cliente" z="user-managed"/>
+            <table:column sort="true" id="c_com_pypaprint_pedidos_domain_Pedido_productos" maxLength="15" property="productos" z="user-managed"/>
+            <table:column sort="true" date="true" dateTimePattern="${pedido_fechaderecepcion_date_format}" id="c_com_pypaprint_pedidos_domain_Pedido_fechaDeRecepcion" maxLength="15" property="fechaDeRecepcion" z="user-managed"/>
+            <table:column sort="true" date="true" dateTimePattern="${pedido_fechapropuestadeentrega_date_format}" id="c_com_pypaprint_pedidos_domain_Pedido_fechaPropuestaDeEntrega" maxLength="15" property="fechaPropuestaDeEntrega" z="user-managed"/>
+            <table:column sort="true" id="c_com_pypaprint_pedidos_domain_Pedido_abono" maxLength="15" property="abono" z="user-managed"/>
+            <table:column sort="true" id="c_com_pypaprint_pedidos_domain_Pedido_totalBs" maxLength="15" property="totalBs" z="user-managed"/>
+        </table:table>
+    </page:list>
+</div>

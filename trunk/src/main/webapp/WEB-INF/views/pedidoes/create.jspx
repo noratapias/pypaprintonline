@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fm="http://www.springframework.org/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <util:load-scripts/>
+    <script type="text/javascript">
+		<![CDATA[
+				dojo.require("dijit.form.FilteringSelect");
+			    var totalBs = 0;
+			    var totalDias = 0;
+			    var contDias = 0;
+			    var mayorDia = -1;
+			    var url = window.location.origin;
+				function mostrarFecha(days){
+				    var fecha=new Date();
+				    var day=fecha.getDate();
+				    var month=fecha.getMonth()+1;
+				    var year=fecha.getFullYear();
+				 
+				 	//sumaaaar 
+				    var tiempo=fecha.getTime();
+				    var milisegundos=parseInt(days*24*60*60*1000);
+				    var total=fecha.setTime(tiempo+milisegundos);
+				    day=fecha.getDate();
+				    if (day < 10) {
+				    	day = "0" + day;
+				    }
+				    month=fecha.getMonth()+1;
+				    if (month < 10) {
+				    	month = "0" + month;
+				    }
+				    year=fecha.getFullYear();
+				    
+				    return day + "/" + month + "/" + year;
+				 
+				}
+				function addProducto(id) {
+					addRowProducto();
+					var i = $("#contProd").val() - 1;
+					$.ajax({
+					      url: url + "/productoes",
+					      type: "get",
+					  	  datatype: 'json',
+					      success: function(data){
+					          $.each(data,function(index,item) {
+						       	  	if(item.id == id) {
+						       	  		$("#idProducto-" + i).val(item.id);
+						       	  		$("#codigo-" + i).val(item.codigo);
+										$("#nameProduct-" + i).append(item.descripcion);
+										$("#duraProduct-" + i).append(item.duracionEnProduccion);
+										$("#precioProduct-" + i).append(item.precio);
+										if (item.duracionEnProduccion > mayorDia) {
+											mayorDia = item.duracionEnProduccion;
+										}
+										totalBs = totalBs + item.precio;
+										$("#fechaPropuestaDeEntrega").val(mostrarFecha(mayorDia));
+										$("#totalBs").empty();
+										$("#totalBs").append(totalBs);
+										if (totalBs < 1000) {
+											$("#abono").val(totalBs);
+										}
+										if (totalBs >= 1000) {
+											$("#abono").val(totalBs / 2);
+										}
+										return false;
+						       	  	}
+							  });
+						  }
+					})
+					
+				}
+				function addRowProducto() {
+					//agregar otro producto
+					var contProd = $("#contProd").val();
+					var i = contProd;
+					var divHtml = [];
+					divHtml.push(
+					"<tr id='row-" + i + "'>" +
+					  "<td id='nameProduct-" + i + "'></td>" +
+					  "<td id='duraProduct-" + i + "'></td>" +
+					  "<td id='precioProduct-" + i + "'></td>" +
+					  "<td> <input id='cantidadAnt-" + i + "' value='1' type='text' hidden='true'/>" + 
+					  " <input id='idProducto-" + i + "' type='text' hidden='true'/>" +
+					  " <input id='codigo-" + i + "' type='text' hidden='true'/>"+
+					  "<input style='width:50%' id='cantidad-" + i + "' value='1' type='text' onchange='cambiarTotalCant(" + i + ")'/></td>" +
+					  "<td id='eliminar-" + i + "'> <a href='#'><img class='elimImg' src='resources/images/x.png' onclick='eliminarProducto(" + i + ")'></a> </td>" +
+					  "</tr>");
+					$('#tabProd').append(divHtml);
+					contProd++;
+					$("#contProd").val(contProd);
+				}
+				function formatMyDate(d) {
+					 var ds = d.split("/");
+					 var dd = ds[0];
+					 var mm = ds[1] // now moths are 1-12
+					 var yy = ds[2]
+					 return mm + "/" + dd + "/" + yy 
+				}
+				function savePedidoes() {
+					var isClient = false;
+					 var pedido = new Object();
+					 pedido.cliente = new Object();
+					 if ($("#idCliente").val() != "" && $("#idCliente").val() > 0) {
+					 	pedido.cliente.id = parseInt($("#idCliente").val());
+					 	isClient = true;
+					 }
+					 pedido.cliente.email = $("#searchClient").val();
+					 pedido.cliente.nombre = $("#nameClient").val();
+					 pedido.cliente.apellido = $("#surnameClient").val();
+					 pedido.cliente.telefono = $("#telfClient").val();
+					 pedido.productos = new Array();
+					 var table = document.getElementById('tabProd');
+						var rowLength = table.rows.length;
+						for(var i = 0; i < rowLength; i++){
+						  var row = table.rows[i];
+						  if (i >= 1) {
+						  	//var inputs = row.cells[0].getElementsByTagName("input");
+						  	var producto = new Object();
+						  	producto.nombre = row.cells[0].innerHTML;
+						  	producto.descripcion = "";
+							producto.duracionEnProduccion = row.cells[1].innerHTML;
+							producto.precio = row.cells[2].innerHTML;
+							var inputs = row.cells[3].getElementsByTagName("input");
+							producto.id = inputs[1].value;
+							producto.codigo = inputs[2].value;
+							producto.cantidadPedido = inputs[3].value;
+							pedido.productos.push(producto);
+						  }
+						}
+					 var dR = formatMyDate($("#fechaDeRecepcion").val());
+					 pedido.fechaDeRecepcion = dR;
+					 var dP = formatMyDate($("#fechaPropuestaDeEntrega").val());
+					 pedido.fechaPropuestaDeEntrega =  dP;
+					 pedido.abono =  $("#abono").val();
+					 pedido.totalBs =  $("#totalBs").html();
+					 pedido.recibidoPor = new Object();
+					 pedido.recibidoPor.id = parseInt($('#idRecibidoPor').val());
+					 pedido.status = new Object();
+					 pedido.status.id = parseInt($('#idStatus').val());
+					 pedido.descripcion = $('#descripPedido').val();
+					 var jsonString= JSON.stringify(pedido);
+					$.ajax({
+					    url: url + '/pedidoes/' + isClient,
+					    type: 'POST',
+					    data: jsonString,
+					    contentType: 'application/json; charset=utf-8',
+					    dataType: 'json',
+					    async: false,
+					    statusCode: {
+					    	404: function() {
+						        $(".infoMessage").show();
+						        $("#message").text("Página no encontrada.");
+						        $(".infoMessage").fadeOut(15000);
+					    	},
+					    	201: function() {
+						        $(".infoMessage").show();
+						        $("#message").text("Orden de producción generada exitosamente.");
+						        $(".infoMessage").fadeOut(15000);
+					    	}
+					    },
+					    error: function(data) {
+					    	$(".infoMessage").show();
+					    	$("#message").text("Se ha generado un error interno.");
+					    	 $(".infoMessage").fadeOut(15000);
+					    },
+					    
+					});
+				}
+				function cambiarTotalCant(i) {
+					var cant = $("#cantidad-" + i).val();
+					var cantAnt = $("#cantidadAnt-" + i).val();
+					var precio = $("#precioProduct-" + i).html();
+					if (cant > 1) {
+						totalBs = totalBs - (precio * cantAnt);
+						totalBs = totalBs + (precio * cant);
+						$("#totalBs").empty();
+						$("#totalBs").append(totalBs);
+						$("#cantidadAnt-" + i).val(cant);
+						if (totalBs < 1000) {
+							$("#abono").val(totalBs);
+						}
+						if (totalBs >= 1000) {
+							$("#abono").val(totalBs / 2);
+						}
+					}
+				}
+				function eliminarProducto(i) {
+					var cant = $("#cantidad-" + i).val();
+					var precio = $("#precioProduct-" + i).html();
+					var dura = $("#duraProduct-" + i).html();
+					totalBs = totalBs - (precio * cant);
+					$("#totalBs").empty();
+					$("#totalBs").append(totalBs);
+					$("#row-" + i).remove();
+					mayorDia = -1;
+					var table = document.getElementById('tabProd');
+					var rowLength = table.rows.length;
+					for(var i = 0; i < rowLength; i++){
+					  var row = table.rows[i];
+					  if (i >= 1) {
+					  	cell = row.cells[1].innerHTML;
+					  	if (cell > mayorDia) {
+					  		mayorDia = cell;
+					  	}
+					  }
+					}
+					$("#fechaPropuestaDeEntrega").val(mostrarFecha(mayorDia));
+					var cont = $("#contProd").val();
+					$("#contProd").val(cont-1);
+				}
+				$(document).ready(function() {
+					if (url.indexOf("localhost") > -1) {
+						url = url + "/pypaprint";
+					}
+					$("#contProd").val(1);
+					$("#fechaDeRecepcion").val(mostrarFecha(0));
+					$("#searchClient").blur(function() {
+						var email = $("#searchClient").val();
+						var jqxhr = $.getJSON(url +  "/clientes?find=ByEmailEquals&email="+ email, function(data) {
+							if (data.length > 0) {
+								$.each(data,function(key,value) {
+									if (value.email == email) {
+										$("#idCliente").val(value.id);
+										$("#nameClient").val(value.nombre);
+										$("#nameClient").prop("disabled", true);
+										$("#surnameClient").val(value.apellido);
+										$("#surnameClient").prop("disabled",true);
+										$("#telfClient").val(value.telefono);
+										$("#telfClient").prop("disabled",true);
+										return false;
+									} else {
+										$("#idCliente").val("");
+										$("#nameClient").val("");
+										$("#nameClient").prop("disabled",false);
+										$("#surnameClient").val("");
+										$("#surnameClient").prop("disabled",false);
+										$("#telfClient").val("");
+										$("#telfClient").prop("disabled",false);
+									}
+								});
+							} else {
+								$("#nameClient").val("");
+								$("#nameClient").prop("disabled",false);
+								$("#surnameClient").val("");
+								$("#surnameClient").prop("disabled",false);
+								$("#telfClient").val("");
+								$("#telfClient").prop("disabled",false);
+							}
+						})
+				});
+				$("#agregarProducto").click(function() {
+					var idProduct = dijit.byId("buscarProd").item.value;
+					if (idProduct != -1) {
+						addProducto(idProduct);
+					}
+				});
+				$("#proceed").click(function() {
+					savePedidoes();
+				});
+				$("#proceed").submit(function() {
+					savePedidoes();
+				});
+				$(document).on({
+				    ajaxStart: function() { $("#mypedido").addClass("loading");    },
+				     ajaxStop: function() { $("#mypedido").removeClass("loading"); }    
+				});
+				});//final
+
+					]]>
+				</script>
+<div id="addpedido" class="addpedido">
+	<a style="cursor: pointer" id="addNewPedido"> Generar nuevo pedido </a>
+</div>
+ <div id="newPedido" class="dialog">
+ 	<table id="principalGrid">
+ 		<tr style="background-color: #EBEBE4">
+ 			<td>
+ 			<div id="column1" class="column1">
+ 				<input hidden="true" id="idCliente" type="text" value=""/>
+			    <table class="tabColumn1">
+			        <tr>
+			            <td style="margin-right: 3px; width: 100px">E-mail del Cliente:
+							</td>
+			            <td>
+			                <input id="searchClient" placeholder="Buscar cliente" type="text"/>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="margin-right: 3px; width: 100px">Nombre:</td>
+			            <td>
+			                <input id="nameClient" type="text"/>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="margin-right: 3px; width: 100px">Apellido:</td>
+			            <td>
+			                <input id="surnameClient" type="text"/>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="margin-right: 3px; width: 100px">Telefono:</td>
+			            <td>
+			                <input id="telfClient" type="text"/>
+			            </td>
+			        </tr>
+			         <tr>
+			            <td style="margin-right: 3px; width: 100px">Fecha de Recepcion:
+							</td>
+			            <td>
+			                <input disabled="disabled" id="fechaDeRecepcion" type="text"/>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="margin-right: 3px; width: 100px">Fecha propuesta de entrega:</td>
+			            <td>
+			                <input disabled="disabled" id="fechaPropuestaDeEntrega" type="text"/>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="margin-right: 3px; width: 100px">Abono:</td>
+			            <td>
+			                <input id="abono" disabled="disabled" type="text"/>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="margin-right: 3px; width: 100px">Recibido por: </td>
+			            <td>
+			            	<input type="text" hidden="true" id="idRecibidoPor" value="${recibidoPorId}"/>
+			                ${recibidoPor}
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="margin-right: 3px; width: 100px">Status del pedido: </td>
+			            <td>
+			            	<input type="text" hidden="true" id="idStatus" value="${statusId}"/>
+			                ${status}
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="margin-right: 3px; width: 100px">Descripcion:</td>
+			            <td>
+			                <textarea width="100px" rows="3" placeholder="Escribe una descripcion">
+							 Pedido
+							</textarea>
+			            </td>
+			        </tr>
+			    </table>
+			    <hr class="vertical"/>
+ 			</div>
+ 			<div id="column2" class="column2">
+ 				<div class="bodyColumn">
+ 					<div class="buscarProd">
+ 						Producto: 
+	       				<select id="buscarProd">
+				        		<option value="-1" selected="selected"></option>
+				        	<c:forEach items="${productos}" var="productos">
+				        		<option value="${productos.id}">${productos.nombre}</option>
+				        	</c:forEach>
+				        </select>
+				    	<![CDATA[
+							<script type="text/javascript">
+								var url = window.location.origin;
+								dojo.require("dijit.form.FilteringSelect");
+								Spring.addDecoration(new Spring.ElementDecoration({
+								elementId : 'buscarProd',
+								widgetType: 'dijit.form.FilteringSelect',
+								widgetAttrs : {hasDownArrow : true, autoComplete:true}}));
+							</script>
+						]]>    
+ 						<input type="button" id="agregarProducto" value="Agregar" class="agregar"/>
+ 					</div>
+ 						<div class="total">
+ 							<h1>Total Bs: </h1><h1 class="valTotal" id="totalBs">0.0</h1> 
+ 						</div>
+ 						<div style="height:200px; overflow:scroll">
+ 							<input id='mayorAnt' value='1' type='text' hidden='true'/>
+ 							<input type="text" hidden="true" id="contProd"/>
+	 						<table id="tabProd" class="tabProd">
+	 							<tr>
+								  <th width="150px">Nombre del Producto</th>
+								  <th width="40px">Duracion</th>
+								  <th width="40px">Precio</th>
+								  <th width="40px">Cantidad</th>
+								  <th width="15px"></th>
+								</tr>
+	 						</table>
+ 						</div>
+ 				</div>
+ 			</div>
+ 			</td>
+ 			</tr>
+ 	</table>
+ 	 <div class="submit" id="pedido_submit">
+        <spring:message code="button_save" htmlEscape="false" var="save_button"/>
+        <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
+        <input id="proceed" type="submit" value="${fn:escapeXml(save_button)}"/>
+    </div>
+ </div>
+ <![CDATA[
+					<script type="text/javascript">
+						Spring.addDecoration(new
+						 Spring.ElementDecoration({
+						 		elementId : 'newPedido',
+						  		widgetType: 'dijit.Dialog'
+						  }));
+						  dojo.require("dijit.Dialog");
+							dojo.ready(function(){
+							    // create the dialog:
+							    var dialog = dijit.byId("newPedido");
+						        dialog.show();
+						        $("#proceed").click(function() {
+									dialog.hide();
+								});
+								$("#addNewPedido").click(function() {
+									dialog.show();
+								});
+							});
+							
+					 </script>
+				]]>
+    <form:dependency dependencies="${dependencies}" id="d_com_pypaprint_pedidos_domain_Pedido" render="${not empty dependencies}" z="NfWaAy4F976JeZery0w2YZAbQ7Y="/>
+    <form:create id="fc_com_pypaprint_pedidos_domain_Pedido" modelAttribute="pedido" path="/pedidoes" render="false" z="user-managed">
+        <field:select field="cliente" id="c_com_pypaprint_pedidos_domain_Pedido_cliente" itemValue="id" items="${clientes}" path="/clientes" z="ykzddjkewUg/cuHu9wVYUGoPGO4="/>
+        <field:select field="productos" id="c_com_pypaprint_pedidos_domain_Pedido_productos" itemValue="id" items="${productoes}" multiple="true" path="/productoes" z="lXrc8fxJOQ+P/CxJb4MC5W4pXWc="/>
+        <field:datetime dateTimePattern="${pedido_fechaderecepcion_date_format}" field="fechaDeRecepcion" id="c_com_pypaprint_pedidos_domain_Pedido_fechaDeRecepcion" z="TKeYwU8FffCvsHQYk69lkHfTFqM="/>
+        <field:datetime dateTimePattern="${pedido_fechapropuestadeentrega_date_format}" field="fechaPropuestaDeEntrega" id="c_com_pypaprint_pedidos_domain_Pedido_fechaPropuestaDeEntrega" z="oYcFoOBjh47zR/4/qxEmJF/rLmk="/>
+        <field:input field="abono" id="c_com_pypaprint_pedidos_domain_Pedido_abono" validationMessageCode="field_invalid_number" z="nLrtNHGKstG5ThR8gJnqxuQXyXU="/>
+        <field:input field="totalBs" id="c_com_pypaprint_pedidos_domain_Pedido_totalBs" validationMessageCode="field_invalid_number" z="0HPEqIHh0P1K/BJSDomEzusAJM8="/>
+        <field:select field="recibidoPor" id="c_com_pypaprint_pedidos_domain_Pedido_recibidoPor" itemValue="id" items="${usuarios}" path="/security/users" z="GBVgN7ON31wPLhff9BOQs2NIBtk="/>
+        <field:select field="status" id="c_com_pypaprint_pedidos_domain_Pedido_status" itemValue="id" items="${statuspedidoes}" path="/statuspedidoes" z="9opzLfq9PEW7lLzhAjbw2czshUU="/>
+    </form:create>
+</div>

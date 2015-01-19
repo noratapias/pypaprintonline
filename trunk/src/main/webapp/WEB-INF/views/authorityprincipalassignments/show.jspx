@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show create="false" delete="false" id="ps_com_pypaprint_pedidos_domain_security_AuthorityPrincipalAssignment" object="${authorityprincipalassignment}" path="/authorityprincipalassignments" update="false" z="/zVOgbGo/ila15LbDz9z3tVOlDk=">
+        <field:display field="username" id="s_com_pypaprint_pedidos_domain_security_AuthorityPrincipalAssignment_username" object="${authorityprincipalassignment}" z="N8DSzU6MZx7cnzml89qDYb6RoxU="/>
+        <field:display field="permiso" id="s_com_pypaprint_pedidos_domain_security_AuthorityPrincipalAssignment_permiso" object="${authorityprincipalassignment}" z="zKObLVn6CApTQpwEhy+a9clqxnU="/>
+    </page:show>
+</div>

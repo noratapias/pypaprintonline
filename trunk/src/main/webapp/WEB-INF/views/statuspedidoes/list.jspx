@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_pypaprint_pedidos_domain_StatusPedido" items="${statuspedidoes}" z="0ysx1HuOYHNHVa4+XugzgBpDXVQ=">
+        <table:table data="${statuspedidoes}" id="l_com_pypaprint_pedidos_domain_StatusPedido" path="/statuspedidoes" z="irwAYnD+FJDSN3D1s7FBIDeMvgA=">
+            <table:column id="c_com_pypaprint_pedidos_domain_StatusPedido_status" property="status" z="c06/Y2R9YEYfBPRMG+umNW61HKA="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_StatusPedido_status_propertie" property="status_propertie" z="u38nFEtz+0C0f7kMmUkynh3xN8U="/>
+        </table:table>
+    </page:list>
+</div>

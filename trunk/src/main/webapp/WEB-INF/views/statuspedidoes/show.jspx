@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_pypaprint_pedidos_domain_StatusPedido" object="${statuspedido}" path="/statuspedidoes" z="RMiTA2tIS/ee2VxjlFAhjUNKkOM=">
+        <field:display field="status" id="s_com_pypaprint_pedidos_domain_StatusPedido_status" object="${statuspedido}" z="/1fi+gI1t0DCol6c6IGEmvq0PnQ="/>
+        <field:display field="status_propertie" id="s_com_pypaprint_pedidos_domain_StatusPedido_status_propertie" object="${statuspedido}" z="PAAXcvtsYNEQplSPBXB5Ti1kfj0="/>
+    </page:show>
+</div>

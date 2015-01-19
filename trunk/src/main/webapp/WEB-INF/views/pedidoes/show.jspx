@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_pypaprint_pedidos_domain_Pedido" object="${pedido}" path="/pedidoes" z="JDzcp1UmLyGJD9PnrSBhAYchB+A=">
+        <field:display field="cliente" id="s_com_pypaprint_pedidos_domain_Pedido_cliente" object="${pedido}" z="f+hQeDWBqpX0NsVkomBj4h+GCbI="/>
+        <div style="float:left;margin-left:5px">Productos:</div> <div style="margin-left:105px"> ${productos}</div>
+        <field:display field="descripcion" label="Descripcion" id="c_com_pypaprint_pedidos_domain_Pedido_descripcion" object="${pedido}" z="user-managed"/>
+        <field:display date="true" dateTimePattern="${pedido_fechaderecepcion_date_format}" field="fechaDeRecepcion" id="s_com_pypaprint_pedidos_domain_Pedido_fechaDeRecepcion" object="${pedido}" z="FihW/kXZOZmtmGka8ndHEVLlmdg="/>
+        <field:display date="true" dateTimePattern="${pedido_fechapropuestadeentrega_date_format}" field="fechaPropuestaDeEntrega" id="s_com_pypaprint_pedidos_domain_Pedido_fechaPropuestaDeEntrega" object="${pedido}" z="COWL/y86lNq1k/2OG+3QqlHGtm4="/>
+        <field:display field="abono" id="s_com_pypaprint_pedidos_domain_Pedido_abono" object="${pedido}" z="wllotOj/TmfnR3NePdgdpmCL1Bc="/>
+        <field:display field="totalBs" id="s_com_pypaprint_pedidos_domain_Pedido_totalBs" object="${pedido}" z="DU/n4rKrwLfqXyS2Q95nAIQPN6k="/>
+        <field:display field="recibidoPor" id="s_com_pypaprint_pedidos_domain_Pedido_recibidoPor" object="${pedido}" z="1aImnydlPpaW41Jj9M/5eZ1GbIg="/>
+        <field:display field="status" id="s_com_pypaprint_pedidos_domain_Pedido_status" object="${pedido}" z="mS7e5Fc1HXzAOhAY9VeWmwgXu6Y="/>
+        <field:display field="comentario" label="Comentario" id="c_com_pypaprint_pedidos_domain_Pedido_comentario" object="${pedido}" z="user-managed"/>
+    </page:show>
+</div>

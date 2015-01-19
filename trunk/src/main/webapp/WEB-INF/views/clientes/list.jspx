@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_pypaprint_pedidos_domain_Cliente" items="${clientes}" z="js764F6GM3AADvFs5Zb0Czmwpsk=">
+        <table:table data="${clientes}" id="l_com_pypaprint_pedidos_domain_Cliente" path="/clientes" z="bnhdgJsYdtJ5B3aeC9l1EKokoI4=">
+            <table:column id="c_com_pypaprint_pedidos_domain_Cliente_nombre" property="nombre" z="y2YeLBfY6VFifv1rSp8UyL1zqh0="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_Cliente_apellido" property="apellido" z="oUqtOfUhjbjaBdvKQtVo0em5Dac="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_Cliente_email" property="email" z="2MF7K04bk+CGpx2rcHbq6jJSmFQ="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_Cliente_telefono" property="telefono" z="IJREU8RMgY7R2ZWpcKo2TDxQ2t4="/>
+        </table:table>
+    </page:list>
+</div>

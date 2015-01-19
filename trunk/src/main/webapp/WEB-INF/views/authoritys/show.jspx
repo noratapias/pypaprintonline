@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show create="false" delete="false" id="ps_com_pypaprint_pedidos_domain_security_Authority" object="${authority}" path="/authoritys" update="false" z="PqjJCSjf97n/Nj2p7SD3OEUJYxs=">
+        <field:display field="nombreDeRol" id="s_com_pypaprint_pedidos_domain_security_Authority_nombreDeRol" object="${authority}" z="y34ZmgqMCN08F2qgthzLAQXE584="/>
+    </page:show>
+</div>
