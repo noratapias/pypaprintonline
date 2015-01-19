@@ -1,0 +1,6 @@
+package com.pypaprint.pedidos.utils.enumerations;
+
+public enum Statuses {
+	ORDEN_RECIBIDA, ORDEN_EN_PRODUCCION, ORDEN_EN_PRODUCCION_BOLEITA,
+	PEDIDO_TERMINADO, PEDIDO_LISTO_PARA_RETIRAR, ENTREGADO, ORDEN_EN_DISENO
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_pypaprint_pedidos_domain_security_Usuario" modelAttribute="usuario" path="/security/users" render="${empty dependencies}" z="KT712AX1Tdrv9O1+kP+k4JSz7Ps=">
+        <field:input field="primerNombre" id="c_com_pypaprint_pedidos_domain_security_Usuario_primerNombre" required="true" z="JKZGAvifTI7unnRmvY9YrQsHOW8="/>
+        <field:input field="segundoNombre" id="c_com_pypaprint_pedidos_domain_security_Usuario_segundoNombre" z="7gU+8zkOOtiUEf0rCWhImo78ys0="/>
+        <field:input field="primerApellido" id="c_com_pypaprint_pedidos_domain_security_Usuario_primerApellido" required="true" z="Pk62ZIxVz2gIlI9QmxOaf324MZU="/>
+        <field:input field="segundoApellido" id="c_com_pypaprint_pedidos_domain_security_Usuario_segundoApellido" z="pn7wsqTRcVsQFxgOPnxJoLCIHsc="/>
+        <field:input field="correo" id="c_com_pypaprint_pedidos_domain_security_Usuario_correo" validationRegex="^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$" z="KEBRcGwtLzLJa02rUSK1U+mjPps="/>
+        <field:input field="telefono" id="c_com_pypaprint_pedidos_domain_security_Usuario_telefono" validationRegex="^\\+?\\d{1,3}?[- .]?\\(?(?:\\d{2,3})\\)?[- .]?\\d\\d\\d[- .]?\\d\\d\\d\\d$" z="TcdTxagoLEZnVx0YLuF/3pU3rlI="/>
+        <field:select field="sexo" id="c_com_pypaprint_pedidos_domain_security_Usuario_sexo" items="${sexoes}" path="sexoes" z="ToFv7HWjn3E1DZIX9VtaS32ml7w="/>
+        <field:datetime dateTimePattern="${usuario_fechadenacimiento_date_format}" field="fechaDeNacimiento" id="c_com_pypaprint_pedidos_domain_security_Usuario_fechaDeNacimiento" z="Rp4kEpvazzbNktMmX+4W4Ixm+xw="/>
+        <field:textarea field="direccion" id="c_com_pypaprint_pedidos_domain_security_Usuario_direccion" z="sXEizs74TKCoSR6n9OR2MtjQ/GY="/>
+        <field:input field="departamento" id="c_com_pypaprint_pedidos_domain_security_Usuario_departamento" z="jdVLCx64wFq+Pn49jYaJzdouc30="/>
+        <field:textarea field="username" id="c_com_pypaprint_pedidos_domain_security_Usuario_username" required="true" z="roNMFw+xSWY93Aqk9S2EBNSTjzk="/>
+        <field:textarea field="password" id="c_com_pypaprint_pedidos_domain_security_Usuario_password" required="true" z="5E0mHKGnd+D6kpKDAfMKfW83fg8="/>
+        <field:checkbox field="enabled" id="c_com_pypaprint_pedidos_domain_security_Usuario_enabled" z="user-managed"/>
+        <div class="formulario" style="margin-bottom:20px">
+	        <div class="title">	
+	        	<label for="_rol_id">
+	            	rol
+	            	:
+	          	</label>
+	   		</div>
+	   		<div class="forms">
+		        <select name="rol" id="rol">
+		        	<c:forEach items="${authoritys}" var="authority">
+		        		<option value="${authority.id}">${authority.nombreDeRol}</option>
+		        	</c:forEach>
+		        </select>
+		    </div>
+    	</div>
+    	<![CDATA[
+			<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : 'rol', widgetType: 'dijit.form.FilteringSelect', widgetAttrs : {hasDownArrow : true}})); </script>
+		]]>    
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_pypaprint_pedidos_domain_security_Usuario" render="${not empty dependencies}" z="3+CklrSJxcpOZV5QyHEj0EzPWQE="/>
+</div>

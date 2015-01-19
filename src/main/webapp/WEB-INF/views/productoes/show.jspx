@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_pypaprint_pedidos_domain_Producto" object="${producto}" path="/productoes" z="kG0OsS+Nue3qqHFmPObjPiY3IsE=">
+        <field:display field="codigo" id="s_com_pypaprint_pedidos_domain_Producto_codigo" object="${producto}" z="HB4orzDwaQxISqf0D62hSZjWwMc="/>
+        <field:display field="nombre" id="s_com_pypaprint_pedidos_domain_Producto_nombre" object="${producto}" z="3su/SLE3OuB90y6FiByAFRPCvyw="/>
+        <field:display field="descripcion" id="s_com_pypaprint_pedidos_domain_Producto_descripcion" object="${producto}" z="zFE8lrFhKXweLK6/QWsDrH5n4Tw="/>
+        <field:display field="precio" id="s_com_pypaprint_pedidos_domain_Producto_precio" object="${producto}" z="EbTVhhyaZ0NjiLqoKk8ANj2twb4="/>
+        <field:display field="cantidad" id="s_com_pypaprint_pedidos_domain_Producto_cantidad" object="${producto}" z="Vfs/kTSSlrInVXU+8OVKsogn+iU="/>
+        <field:display field="duracionEnProduccion" id="s_com_pypaprint_pedidos_domain_Producto_duracionEnProduccion" object="${producto}" z="1xIn8195wGdwUkedRmMWS6PMrTY="/>
+        
+    </page:show>
+</div>

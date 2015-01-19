@@ -1,0 +1,281 @@
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-14 15:04:16
+project --topLevelPackage com.pypaprint.pedidos --projectName pypaprint --java 7 --packaging WAR
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-14 15:04:36
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-14 15:06:40
+jpa setup --provider HIBERNATE --database MYSQL --databaseName pypaprint --password  --userName root --hostName localhost
+entity jpa --class ~.domain.cliente
+field string --fieldName nombre --notNull --sizeMin 3 --sizeMax 50
+field string --fieldName apellido --notNull --sizeMin 3 --sizeMax 50
+field string --fieldName email --notNull --regexp ^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$
+field string --fieldName telefono --notNull
+entity jpa --class ~.domain.Producto
+field string --fieldName nombre --notNull --sizeMin 3 --sizeMax 50
+field string --fieldName descripcion --notNull --sizeMin 10 --sizeMax 150
+field number --type java.lang.Double --fieldName precio
+field number --type java.lang.Long --fieldName cantidad
+entity jpa --class ~.domain.security.Usuario
+entity jpa --class ~.domain.pedido
+field reference --fieldName cliente --type ~.domain.Cliente
+hint relationships
+field set --fieldName productos --class Pedido --type Producto --mappedBy order
+field reference --fieldName pedido --class Producto --type Pedido --notNull
+hint fields
+field date --fieldName fechaDeRecepcion --type java.util.Date 
+field date --fieldName fechaPropuestaDeEntrega --type java.util.Date 
+field number --type java.lang.Double --fieldName abono
+field number --type java.lang.Double --fieldName totalBs
+field reference --fieldName recibidoPor --class Pedido --type com.pypaprint.pedidos.domain.security.Usuario
+repository jpa --interface ~.repositorys.PedidoRepository --entity ~.domain.Pedido
+repository jpa --interface ~.repositorys.ProductoRepository --entity ~.domain.Producto
+repository jpa --interface ~.repositorys.ClienteRepository --entity ~.domain.Cliente
+service all --interfacePackage ~.services
+json all --deepSerialize 
+web mvc json setup
+web mvc json all
+web mvc setup
+web mvc all --package  ~.web
+security setup
+web mvc language --code es
+web mvc all --package  ~.web
+exit
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-14 16:09:16
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-14 16:09:40
+web mvc all --package  ~.web
+web mvc all --package  ~.web
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-14 16:57:32
+web mvc all --package  ~.web
+web mvc all --package  ~.web
+exit
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-14 17:06:11
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-14 17:06:29
+web mvc all --package  ~.web
+json all --deepSerialize 
+web mvc all --package  ~.web
+entity jpa --class ~.domain.security.Authority
+field string --fieldName roleId --notNull --sizeMax 10 --sizeMin 8
+field string --fieldName authority --notNull --sizeMax 50 --sizeMin 8 --regexp ^ROLE_[A-Z]*
+entity jpa --class ~.domain.security.AuthorityPrincipalAssignment
+field reference --fieldName username --type ~.domain.security.Usuario
+field reference --fieldName roleId --type ~.domain.security.Authority
+web mvc scaffold --class ~.web.security.UserController --backingType ~.domain.security.Usuario --path /security/users
+web mvc scaffold --class ~.web.security.RoleController --backingType ~.domain.security.Authority --path /security/roles
+web mvc scaffold --class ~.web.security.RoleMappingController --backingType ~.domain.security.AuthorityPrincipalAssignment --path /security/assignments
+web mvc all --package ~.web
+web mvc all --package ~.web
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-15 16:51:57
+entity jpa --class ~.domain.StatusPedido
+field string --fieldName status --notNull --unique
+field number --type java.lang.int --fieldName numeroStatus --unique 
+focus --class Pedido
+field reference --fieldName status --type ~.domain.StatusPedido
+web mvc all --package ~.web
+web mvc all --package ~.web
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-15 21:46:42
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-16 11:05:36
+// [failed] focus --class Cliente
+// [failed] finder list
+// [failed] finder list
+// [failed] focus --class domain.Cliente
+focus --class com.pypaprint.pedidos.domain.Cliente
+finder list
+finder add findClientesByEmailEquals
+web mvc all --package ~.web
+web mvc finder all
+// [failed] focus --class domain.Cliente
+focus --class com.pypaprint.pedidos.domain.Cliente
+web mvc json all
+web mvc json all
+web mvc json all
+service all --interfacePackage ~.services
+json all --deepSerialize 
+web mvc json all
+web mvc json all
+json all --deepSerialize
+web mvc json all
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-16 22:47:14
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-16 22:54:54
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-17 09:55:01
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-17 17:09:11
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-17 17:11:33
+controller all --package ~.web
+web mvc json all
+web mvc all --package ~.web
+json all --deepSerialize
+web mvc all --package ~.web
+ controller all --package ~.web
+perform eclipse
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-17 17:54:43
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-17 17:57:27
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-17 18:06:48
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-17 19:06:14
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-17 20:34:32
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-23 18:18:43
+json all
+field email template --class Pedido
+field email template --class  com.pypaprint.pedidos.domain.Pedido
+email sender setup --hostServer smtp.gmail.com --port 25 --username tapiasnora@gmail.com --password gabo1161984
+web mvc json all
+web mvc all --package ~.web
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-23 20:01:31
+focus --class com.pypaprint.pedidos.domain.security.AuthorityPrincipalAssignment
+finder list
+finder add --finderName findAuthorityPrincipalAssignmentsByUsername
+focus --class com.pypaprint.pedidos.domain.Pedido
+finder list
+finder add --finderName findPedidoesByRecibidoPor
+focus --class com.pypaprint.pedidos.domain.security.Usuario
+finder list
+finder add --finderName findUsuariosByUsernameEquals
+focus --class com.pypaprint.pedidos.domain.security.AuthorityPrincipalAssignment
+finder list
+finder add --finderName findAuthorityPrincipalAssignmentsByUsername
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-23 23:42:10
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-24 10:16:26
+focus --class com.pypaprint.pedidos.domain.Pedido
+field email template --class  com.pypaprint.pedidos.domain.Pedido
+email sender setup --hostServer smtp.gmail.com --port 587 --username tapiasnora@gmail.com --password gabo1161984 --protocol SMTP
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-24 14:49:43
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-24 17:07:55
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-07-25 10:11:28
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-07-25 11:44:32
+focus --class com.pypaprint.pedidos.domain.Pedido
+finder list
+finder add --finderName findPedidoesByCliente
+// [failed]  web mvc finder add --class ~.web.PedidoController --formBackingType ~.domain.Pedido
+ web mvc finder add --class ~.PedidoController --formBackingType ~.domain.Pedido
+focus --class com.pypaprint.pedidos.domain.Pedido
+finder list
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-01 09:40:30
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-01 09:42:25
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-01 09:42:50
+focus --class ~.domain.Producto
+field string --fieldName  codigo --notNull
+entity jpa --class ~.domain.MediaUpload
+field string --fieldName filepath --notNull true --sizeMax 128
+field number --type long --fieldName filesize --notNull true
+field string --fieldName contentType --notNull true
+// [failed] web mvc all --package ~.web
+controller all --package ~.web
+focus --class ~.domain.MediaUpload
+controller all --package ~.web
+controller all --package com.pypaprint.pedidos.domain
+service all --interfacePackage ~.services
+web mvc all --package ~.web
+web mvc all --package ~.web
+web mvc all --package ~.web
+web mvc all --package ~.web
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-02 06:26:33
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-02 10:27:34
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-02 11:08:31
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-02 14:41:28
+// [failed] web mvc all --package ~.web
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-02 14:49:56
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-02 17:05:34
+// [failed] controller all --package ~.web
+web mvc all --package ~.web
+controller all --package ~.web
+web mvc all --package ~.web
+controller all --package ~.web
+controller all --package ~.web
+controller all --package ~.web
+controller all --package ~.web
+focus --class ~.domain.MediaUpload
+// [failed] field file --contentType XLS --fieldName file --autoUpload 
+entity jpa --class ~.domain.ProductoUpload
+field file --fieldName file --contentType XLS --autoUpload --notNull 
+service all --interfacePackage ~.services
+// [failed] controller all --package ~.web
+web mvc all --package ~.web
+controller all --package ~.web
+controller all --package ~.web
+web mvc all --package ~.web
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-02 18:17:21
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-03 20:09:53
+focus --class ~.domain.Producto
+finder list 
+finder add findProductoesByCodigoEquals 
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-03 23:17:00
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-04 12:42:47
+focus --class ~.domain.Pedido
+finder list
+finder add findPedidoesByStatus
+// [failed] web mvc finder add --formBackingType ~.PedidoController 
+web mvc finder add --class ~.PedidoController --formBackingType ~.domain.Pedido
+controller all --package ~.web
+web mvc all --package ~.web
+web mvc finder add --class ~.PedidoController --formBackingType ~.domain.Pedido
+finder add findPedidoesByStatus
+web mvc finder add --class ~.PedidoController --formBackingType ~.domain.Pedido
+// [failed] web mvc finder all
+web mvc finder add --class ~.PedidoController --formBackingType ~.domain.Pedido
+// [failed] web mvc finder all
+web mvc finder all
+web mvc finder all
+// [failed] web mvc all --package ~.web
+focus --class ~.domain.Pedido
+finder add findPedidoesByStatus
+web mvc finder add --class ~.PedidoController --formBackingType ~.domain.Pedido
+web mvc all --package ~.web
+web mvc finder all
+controller all --package ~.web
+controller all --package com.pypaprint.pedidos.domain
+controller all --package ~.web
+service all --interfacePackage ~.services
+web mvc finder add --class ~.PedidoController --formBackingType ~.domain.Pedido
+web mvc all --package ~.web
+web mvc finder add --class ~.PedidoController --formBackingType ~.domain.Pedido
+web mvc finder all
+web mvc all --package ~.web
+// [failed] web mvc finder add --formBackingType ~.domain.Pedido --class ~.web.PedidoController
+web mvc finder add --formBackingType ~.domain.Pedido --class ~.PedidoController
+web mvc finder add --class ~.PedidoController --formBackingType ~.domain.Pedido
+controller all --package ~.web
+service all --interfacePackage ~.services
+web mvc all --package ~.web
+osgi obr url add --url http://repository-sillyweasel.forge.cloudbees.com/release/repository.xml
+osgi obr list
+osgi obr info --bundleSymbolicName jquery
+osgi obr list
+osgi obr url add --url http://repository-sillyweasel.forge.cloudbees.com/release/repository.xml
+addon install bundle --bundleSymbolicName https://sillyweasel.ci.cloudbees.com/job/jquery-roo-addon%20builder/
+web mvc all --package ~.web
+osgi obr url add --url 
+   http://repository-sillyweasel.forge.cloudbees.com/release/repository.xml
+
+hint jquery
+hint addon
+addon install bundle --bundleSymbolicName https://sillyweasel.ci.cloudbees.com/job/jquery-roo-addon%20builder/
+addon list 
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-04 23:02:15
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-05 11:03:42
+entity jpa --class ~.domain.PedidoProductos --table pedido_productos
+field number --fieldName cantidad --type Long --notNull 
+// [failed] web mvc all --package ~.web
+entity jpa --class ~.domain.PedidoProductos --table pedidos_productos
+field number --fieldName cantidad --type Long --notNull 
+// [failed] web mvc all --package ~.web
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-05 21:53:25
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-06 23:29:47
+focus --class ~.domain.StatusPedido
+finder list
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-07 00:03:39
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-09 12:39:46
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-10 09:06:05
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-19 11:40:35
+focus --class ~.domain.StatusPedido
+finder list
+finder add findStatusPedidoesByStatusEquals
+finder add findStatusPedidoesByStatus_propertieEquals
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-20 07:35:04
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-08-20 14:38:23
+focus --class ~.domain.PedidoProductos
+finder list
+finder add findPedidoProductosesByPedido
+service all --interfacePackage ~.services
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-08-21 00:06:42
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-09-11 16:13:54
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-09-11 18:21:49
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-11-24 16:22:45
+// [failed] controller all --package ~.web
+web mvc controller --class ~.domain.PedidoProductos 
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-11-24 16:43:27

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_pypaprint_pedidos_domain_security_Usuario" object="${usuario}" path="/usuarios" z="BjdVN54hn8Jl5ES6jbth3mu+65g=">
+        <field:display field="primerNombre" id="s_com_pypaprint_pedidos_domain_security_Usuario_primerNombre" object="${usuario}" z="CaXHi86Up2SDicXGCa/tUy79/ao="/>
+        <field:display field="segundoNombre" id="s_com_pypaprint_pedidos_domain_security_Usuario_segundoNombre" object="${usuario}" z="2CkaQQ2alo6KYOrkunTWvbzR2do="/>
+        <field:display field="primerApellido" id="s_com_pypaprint_pedidos_domain_security_Usuario_primerApellido" object="${usuario}" z="eoOhFI2t7TEf9l22VLCwuYzzGAk="/>
+        <field:display field="segundoApellido" id="s_com_pypaprint_pedidos_domain_security_Usuario_segundoApellido" object="${usuario}" z="WuutEo5itobgChJbdiR/up7AOcE="/>
+        <field:display field="correo" id="s_com_pypaprint_pedidos_domain_security_Usuario_correo" object="${usuario}" z="PuZPOmOIWGhpG0m1MGrO3KOzwNQ="/>
+        <field:display field="telefono" id="s_com_pypaprint_pedidos_domain_security_Usuario_telefono" object="${usuario}" z="AzqTP6yBpt7ANRlt+JorzYWRyr8="/>
+        <field:display field="sexo" id="s_com_pypaprint_pedidos_domain_security_Usuario_sexo" object="${usuario}" z="tJ8xu3bZJ955Hbsf39a8qB2N+6Q="/>
+        <field:display date="true" dateTimePattern="${usuario_fechadenacimiento_date_format}" field="fechaDeNacimiento" id="s_com_pypaprint_pedidos_domain_security_Usuario_fechaDeNacimiento" object="${usuario}" z="BvLaHhd4aSk8SSJjCMiKRH79n7A="/>
+        <field:display field="direccion" id="s_com_pypaprint_pedidos_domain_security_Usuario_direccion" object="${usuario}" z="Ut4W37fnrD2euoALjqWtrIwPi/M="/>
+        <field:display field="departamento" id="s_com_pypaprint_pedidos_domain_security_Usuario_departamento" object="${usuario}" z="CRXkvXFj7W3h/nnEcIe8tsemRtU="/>
+        <field:display field="username" id="s_com_pypaprint_pedidos_domain_security_Usuario_username" object="${usuario}" z="kGmoUrm5pjPJPJBL95oPgYJWEMg="/>
+        <field:display field="password" id="s_com_pypaprint_pedidos_domain_security_Usuario_password" object="${usuario}" z="Nax2fiy1GRn/HfP+S/R89XZTaqY="/>
+        <field:display field="enabled" id="s_com_pypaprint_pedidos_domain_security_Usuario_enabled" object="${usuario}" z="s2HXuaXag5oYCqBHYI0PjvJiVB8="/>
+    </page:show>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_pypaprint_pedidos_domain_Producto" items="${productoes}" z="S8u2HJZseKxIeHkgF5L1Mz+NZJQ=">
+        <table:table data="${productoes}" id="l_com_pypaprint_pedidos_domain_Producto" path="/productoes" z="6p5s+9tYCbpJy+6fteg45dCjDzY=">
+            <table:column id="c_com_pypaprint_pedidos_domain_Producto_codigo" property="codigo" z="krkmFSPn5q+GY7rO5N7OCxd3bEo="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_Producto_nombre" property="nombre" z="8ELLslWvUws82sDTO+e4agXGXp0="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_Producto_precio" property="precio" z="+FUD1HiqxPieulGBKznsUdPLDno="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_Producto_duracionEnProduccion" property="duracionEnProduccion" z="lBu6RtK4MnRZ4MD7RItTRm9/Wus="/>
+            
+        </table:table>
+    </page:list>
+</div>

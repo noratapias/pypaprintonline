@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_pypaprint_pedidos_domain_Producto" modelAttribute="producto" path="/productoes" versionField="Version" z="mi/AuZ6KD8jbpB0U6x5pJHTYT7M=">
+        <field:input field="codigo" id="c_com_pypaprint_pedidos_domain_Producto_codigo" required="true" z="lp5YN/XUBX0TSRU60eTHvDCAdZ4="/>
+        <field:input field="nombre" id="c_com_pypaprint_pedidos_domain_Producto_nombre" required="true" z="kcIM+b06KRK7x+txL1dsGPPX9K0="/>
+        <field:textarea field="descripcion" id="c_com_pypaprint_pedidos_domain_Producto_descripcion" required="true" z="rn4KqjjmXKpSGQ+RR9c3nsfhrG0="/>
+        <field:input field="precio" id="c_com_pypaprint_pedidos_domain_Producto_precio" validationMessageCode="field_invalid_number" z="VjM5bUYRpK4Z9thvDjdRc1/ObjA="/>
+        <field:input field="cantidad" id="c_com_pypaprint_pedidos_domain_Producto_cantidad" validationMessageCode="field_invalid_integer" z="pdpAQ3TbC4paP31oM7Oo2BV8qto="/>
+        <field:input field="duracionEnProduccion" id="c_com_pypaprint_pedidos_domain_Producto_duracionEnProduccion" validationMessageCode="field_invalid_number" z="K60GpVZ14U+9CeVMJ3qyu7RcWfs="/>
+        
+    </form:update>
+</div>

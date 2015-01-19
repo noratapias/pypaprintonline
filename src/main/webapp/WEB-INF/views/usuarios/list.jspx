@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_pypaprint_pedidos_domain_security_Usuario" items="${usuarios}" z="EsiBoGPSdRUxa+HqL/tJS5OxAKk=">
+        <table:table data="${usuarios}" id="l_com_pypaprint_pedidos_domain_security_Usuario" path="/usuarios" z="Ccs36pPvZFi3j92dyWvxveBEkZY=">
+            <table:column id="c_com_pypaprint_pedidos_domain_security_Usuario_primerNombre" property="primerNombre" z="58BMQ8dqpZNUkavw9pdM4/iTzf8="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_security_Usuario_segundoNombre" property="segundoNombre" z="Rg0cnpsiOJlCKgq4DH5P2yrYIb4="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_security_Usuario_primerApellido" property="primerApellido" z="Wi1zl/Ai2t/r4OBdQwOyS9QC5pw="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_security_Usuario_segundoApellido" property="segundoApellido" z="dfTJnqrRj2qJ5hFsyfg1Pz0dR4I="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_security_Usuario_correo" property="correo" z="zwr0gtMk23IQhO3QN761UJDyBj4="/>
+            <table:column id="c_com_pypaprint_pedidos_domain_security_Usuario_telefono" property="telefono" z="+YDzNa5NjkmHC645nkJ08yCu8Tg="/>
+        </table:table>
+    </page:list>
+</div>
